@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class SimpleGUI extends Application implements EventHandler<ActionEvent> {
+public class SimpleGUI extends Application {
 
     private Label label;
 
@@ -20,7 +20,7 @@ public class SimpleGUI extends Application implements EventHandler<ActionEvent> 
         Pane root = new StackPane();
         label = new Label("Here is some text that can be manipulated with the button above.");
         Button clickMe = new Button("Click Me");
-        clickMe.setOnAction(this);
+        clickMe.setOnAction(new ClickMeHandler());
         root.getChildren().addAll(label, clickMe);
 
         primaryStage.setTitle("Simple GUI");
@@ -28,12 +28,14 @@ public class SimpleGUI extends Application implements EventHandler<ActionEvent> 
         primaryStage.show();
     }
 
-    @Override
-    public void handle(ActionEvent event) {
-        if(label.getEffect()==null) {
-            label.setEffect(new BoxBlur());
-        } else {
-            label.setEffect(null);
+    private class ClickMeHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            if (label.getEffect() == null) {
+                label.setEffect(new BoxBlur());
+            } else {
+                label.setEffect(null);
+            }
         }
     }
 }
