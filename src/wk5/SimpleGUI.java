@@ -20,7 +20,7 @@ public class SimpleGUI extends Application {
         Pane root = new StackPane();
         label = new Label("Here is some text that can be manipulated with the button above.");
         Button clickMe = new Button("Click Me");
-        clickMe.setOnAction(event -> clickHandler(event));
+        clickMe.setOnAction(this::clickHandler);
         root.getChildren().addAll(label, clickMe);
 
         primaryStage.setTitle("Simple GUI");
