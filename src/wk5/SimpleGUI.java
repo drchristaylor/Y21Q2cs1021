@@ -20,22 +20,20 @@ public class SimpleGUI extends Application {
         Pane root = new StackPane();
         label = new Label("Here is some text that can be manipulated with the button above.");
         Button clickMe = new Button("Click Me");
-        clickMe.setOnAction(new ClickMeHandler());
+        clickMe.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (label.getEffect() == null) {
+                    label.setEffect(new BoxBlur());
+                } else {
+                    label.setEffect(null);
+                }
+            }
+        });
         root.getChildren().addAll(label, clickMe);
 
         primaryStage.setTitle("Simple GUI");
         primaryStage.setScene(new Scene(root, 400, 300));
         primaryStage.show();
-    }
-
-    private class ClickMeHandler implements EventHandler<ActionEvent> {
-        @Override
-        public void handle(ActionEvent event) {
-            if (label.getEffect() == null) {
-                label.setEffect(new BoxBlur());
-            } else {
-                label.setEffect(null);
-            }
-        }
     }
 }
