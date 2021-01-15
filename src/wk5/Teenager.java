@@ -3,11 +3,12 @@ package wk5;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+
+import java.util.InputMismatchException;
+import java.util.Optional;
 
 public class Teenager extends Application {
 
@@ -21,7 +22,7 @@ public class Teenager extends Application {
         input = new TextField();
         input.setOnAction(this::handleInput);
         Button clear = new Button("Clear");
-        clear.setOnAction(event -> handleClear(event));
+        clear.setOnAction(this::handleClear);
         GridPane pane = new GridPane();
         pane.add(new Label("Please enter your age: "), 0, 0);
         pane.add(input, 0, 1);
@@ -38,9 +39,22 @@ public class Teenager extends Application {
 
     private void handleInput(ActionEvent event) {
         String text = ((TextField)event.getSource()).getText();
-        int age = Integer.parseInt(text);
+        int age = -1;
+        try {
+            age = Integer.parseInt(text);
+        } catch(NumberFormatException exception) {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Invalid input");
+            dialog.setHeaderText("invalid input");
+            Optional<String> result = dialog.showAndWait();
+            if(result.isPresent()) {
+                String response = result.get();
+                input.setText(response);
+                age = Integer.parseInt(response);
+            }
+        }
         String not = "";
-        if(age<13 || age>19) {
+        if (age < 13 || age > 19) {
             not = "not ";
         }
         response.setText("You are " + not + "a teenager.");
