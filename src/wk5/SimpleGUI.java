@@ -2,14 +2,17 @@ package wk5;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.util.Optional;
 
 public class SimpleGUI extends Application {
 
@@ -32,7 +35,11 @@ public class SimpleGUI extends Application {
         if (label.getEffect() == null) {
             label.setEffect(new BoxBlur());
         } else {
-            label.setEffect(null);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Remove blur.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.isPresent() && result.get()==ButtonType.OK) {
+                label.setEffect(null);
+            }
         }
     }
 }
