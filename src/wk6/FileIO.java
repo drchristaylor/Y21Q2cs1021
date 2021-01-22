@@ -1,10 +1,10 @@
 package wk6;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +28,9 @@ public class FileIO {
         }
     }
 
-    public static List<String> readTextFile(String filename) {
+    public static List<String> readTextFile(String filename) throws IOException {
         List<String> lines = new ArrayList<>();
-        try (InputStream istream = Files.newInputStream(Paths.get(filename);
+        try (InputStream istream = Files.newInputStream(Paths.get(filename));
              Scanner in = new Scanner(istream)) {
             while(in.hasNextLine()) {
                 lines.add(in.nextLine());
