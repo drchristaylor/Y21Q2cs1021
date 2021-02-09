@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wk9.twostage.SecondaryController">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <VBox prefHeight="98.0" prefWidth="249.0">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" rotate="-15.9" text="Stage 2" translateX="50.0" translateY="15.0">
+                    <font>
+                        <Font size="48.0" />
+                    </font>
+                </Label>
+            </children></VBox>
+    </children>
+</GridPane>
